@@ -16,7 +16,7 @@ public class ExperimentController {
 	private ExperimentStorage experimentStorage;
 	
 	@GetMapping("")
-	public Iterable<Experiment> getExperiments(){
+	public Iterable<Experiment> getAllExperiments(){
 		return experimentStorage.getAllExperiments();
 	}
 	
