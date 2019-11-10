@@ -21,11 +21,11 @@ public class InventorStorage {
 		inventorRepo.save(inventor);
 	}
 
-	public Inventor getInventor(long id) throws InventorNotFoundException {
-		Optional<Inventor> retrievedInventorOptional = inventorRepo.findById(id);
-		if (!retrievedInventorOptional.isPresent()) {
-			throw new InventorNotFoundException("Inventor not found.");
-		}
-		return retrievedInventorOptional.get();
-	}
+//	public Inventor getInventor(long id) throws InventorNotFoundException {
+//		Optional<Inventor> retrievedInventorOptional = inventorRepo.findById(id);
+//		if (!retrievedInventorOptional.isPresent()) {
+//			throw new InventorNotFoundException("Inventor not found.");
+//		}
+//		return retrievedInventorOptional.get();
+//	}
 }

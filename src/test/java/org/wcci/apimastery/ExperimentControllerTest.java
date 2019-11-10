@@ -40,7 +40,7 @@ public class ExperimentControllerTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
-		testExperiment = new Experiment();
+		testExperiment = new Experiment("test experiment", "description");
 		}
 	
 	@Test
@@ -57,13 +57,25 @@ public class ExperimentControllerTest {
 		assertThat(retrievedExperiment, is(testExperiment));
 	}
 	
-//	@Test
-//	public void fetchAllIsMappedCorrectlyAndReturnsAJsonList() throws Exception {
-//		when(experimentStorage.getAllExperiments()).thenReturn(Collections.singletonList(testExperiment));
-//		mockMvc.perform(get("/api/experiments")).andDo(print()).andExpect(status().isOk())
-//				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(jsonPath("$", hasSize(1)))
-//				.andExpect(jsonPath("$[0].title", is(equalTo("testexperiment"))));
-//	}
+	@Test
+	public void fetchAllIsMappedCorrectlyAndReturnsAJsonList() throws Exception {
+		when(experimentStorage.getAllExperiments()).thenReturn(Collections.singletonList(testExperiment));
+		mockMvc.perform(get("/experiments")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(jsonPath("$[0].name", is(equalTo("test experiment"))));
+	}
+	
+	@Test
+	public void getByIdIsMappedCorrectlyAndReturnsAJsonExperiment() throws Exception {
+		when(experimentStorage.findExperimentById(1L)).thenReturn(testExperiment);
+		mockMvc.perform(get("/experiments/1"))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+		.andExpect(jsonPath("$.name", is(equalTo("test experiment"))));
+	}
+	
+	
 	
 
 }

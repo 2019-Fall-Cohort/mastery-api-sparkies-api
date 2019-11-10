@@ -57,25 +57,25 @@ public class InventorControllerTest {
 	@Test
 	public void shouldReturnAllInventors() throws Exception {
 		when(inventorStorage.getAllInventors()).thenReturn((Collections.singletonList(testInventor)));
-		mockMvc.perform(get("/api/inventors")).andDo(print()).andExpect(status().isOk())
+		mockMvc.perform(get("/inventors")).andDo(print()).andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(jsonPath("$", hasSize(1)))
 			.andExpect(jsonPath("$[0].name", is(equalTo("Test Inventor"))));
 	}
 	
 	@Test
 	public void getByIdReturnsSingleInventor() throws InventorNotFoundException {
-		when(inventorStorage.getInventor(1L)).thenReturn(testInventor);
+		when(inventorStorage.findInventorById(1L)).thenReturn(testInventor);
 		Inventor retrievedInventor = underTest.getSingleInventor(1L);
 		assertThat(retrievedInventor, is(testInventor));
 	}
 	
 	
-//	@Test
-//	public void getAllIsMappedCorrectlyAndReturnsAJsonList() throws Exception {
-//		when(inventorStorage.getAllInventors()).thenReturn(Collections.singletonList(testInventor));
-//		mockMvc.perform(get("api/inventors")).andDo(print()).andExpect(status().isOk())
-//		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(jsonPath("$", hasSize(1)))
-//		.andExpect(jsonPath("$[0].title", is(equalTo("test Inventor"))));
-//	}   
+	@Test
+	public void getAllIsMappedCorrectlyAndReturnsAJsonList() throws Exception {
+		when(inventorStorage.getAllInventors()).thenReturn(Collections.singletonList(testInventor));
+		mockMvc.perform(get("/inventors")).andDo(print()).andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(jsonPath("$", hasSize(1)))
+		.andExpect(jsonPath("$[0].name", is(equalTo("Test Inventor"))));
+	}   
 	
 }
