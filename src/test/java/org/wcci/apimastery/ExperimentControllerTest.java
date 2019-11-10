@@ -40,7 +40,7 @@ public class ExperimentControllerTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
-		testExperiment = new Experiment();
+		testExperiment = new Experiment("name", "description");
 		}
 	
 	@Test
