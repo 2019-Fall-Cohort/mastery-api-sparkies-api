@@ -21,6 +21,10 @@ public class ExperimentStorage {
 		experimentRepo.save(experiment);
 	}
 
+	public void removeExperiment(Experiment experiment) {
+		experimentRepo.delete(experiment);
+	}
+
 	
 	
 }

@@ -78,4 +78,12 @@ public class InventorControllerTest {
 		.andExpect(jsonPath("$[0].name", is(equalTo("Test Inventor"))));
 	}   
 	
+	
+//	Alex sez: 11:15 on November 10: I figured out how to delete inventors without this, but I still want to figure out how to test deletion in JPA.
+//    @Test
+//    public void deleteInventor() throws Exception {      
+//        when(inventorStorage.removeInventor(testInventor).thenReturn("SUCCESS");
+//        mockMvc.perform(delete("/inventors", 1L))
+//                .andExpect(status().isOk());
+//    }
 }

@@ -23,6 +23,10 @@ public class InventorStorage {
 		inventorRepo.save(inventor);
 	}
 
+	public void removeInventor(Inventor inventor) {
+		inventorRepo.delete(inventor);
+	}
+
 //	public Inventor getInventor(long id) throws InventorNotFoundException {
 //		Optional<Inventor> retrievedInventorOptional = inventorRepo.findById(id);
 //		if (!retrievedInventorOptional.isPresent()) {
