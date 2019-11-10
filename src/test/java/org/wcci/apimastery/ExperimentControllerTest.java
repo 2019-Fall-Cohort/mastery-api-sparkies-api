@@ -40,11 +40,8 @@ public class ExperimentControllerTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(underTest).build();
-<<<<<<< HEAD
 		testExperiment = new Experiment("test experiment", "description");
-=======
-		testExperiment = new Experiment("name", "description");
->>>>>>> 853ddc6f693b9317121774220374a505fb9c7195
+
 		}
 	
 	@Test

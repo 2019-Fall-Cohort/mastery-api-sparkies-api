@@ -7,6 +7,9 @@ import javax.persistence.Id;
 @Entity
 public class Tag {
 
+	public Tag(String tagName) {
+		this.tagName = tagName;
+	}
 	@Id
 	@GeneratedValue
 	private Long id;
