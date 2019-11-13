@@ -41,11 +41,11 @@ public class InventorController {
 		inventorStorage.addInventor(inventor);
 	}
 	
-	@PatchMapping("/{id}/add")
-	public void addTag(String tagName, @PathVariable("id") Long id){
+	@PatchMapping("/{id}/addTag/{tagName}")
+	public void addTag(@PathVariable String tagName, @PathVariable("id") Long id){
 		Inventor inventor = inventorStorage.findInventorById(id);
 		Tag addedTag = new Tag(tagName);
-		tagStorage.addTag(addedTag);
+		addedTag = tagStorage.addTag(addedTag);
 		inventorStorage.addTagToInventor(addedTag, id);
 	}
 	

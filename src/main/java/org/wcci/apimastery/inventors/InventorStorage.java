@@ -36,8 +36,8 @@ public class InventorStorage {
 
 	public void addTagToInventor(Tag addedTag, Long id) {
 		Inventor inventor = inventorRepo.findById(id).get();
-		List tagList = (List) inventor.getTags();
-		tagList.add(addedTag);
+		inventor.giveInventorATag(addedTag);
+		inventorRepo.save(inventor);
 	}
 
 //	public Inventor getInventor(long id) throws InventorNotFoundException {

@@ -10,8 +10,8 @@ public class TagStorage {
 	@Autowired
 	private TagRepository tagRepo;
 
-	public void addTag(Tag tag) {
-		tagRepo.save(tag);
+	public Tag addTag(Tag tag) {
+		return tagRepo.save(tag);
 	}
 	
 	

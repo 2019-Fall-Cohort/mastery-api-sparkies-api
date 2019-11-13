@@ -1,5 +1,6 @@
 package org.wcci.apimastery.inventors;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,6 +32,14 @@ public class Inventor {
 		this.name = name;
 		this.country = country;
 	}
+	
+	public void giveInventorATag(Tag tag) {
+		if (tags == null) {
+			tags = new ArrayList<>();
+		}
+		tags.add(tag);
+	}
+	
 	public Long getId() {
 		return id;
 	}
