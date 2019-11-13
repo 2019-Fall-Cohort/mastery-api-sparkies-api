@@ -1,4 +1,4 @@
-package org.wcci.apimastery;
+package org.wcci.apimastery.experiments;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wcci.apimastery.inventors.InventorStorage;
+import org.wcci.apimastery.inventors.Inventor;
+
 
 
 @RestController
@@ -16,6 +19,9 @@ public class ExperimentController {
 
 	@Autowired
 	private ExperimentStorage experimentStorage;
+	
+	@Autowired
+	private InventorStorage inventorStorage; 
 	
 	@GetMapping("")
 	public Iterable<Experiment> getAllExperiments(){
@@ -28,8 +34,8 @@ public class ExperimentController {
 	}
 	
 	@PostMapping("/add")
-	public void addSingleExperiment(@PathVariable String name, String description) {
-		Experiment experiment = new Experiment(name, description);
+	public void addSingleExperiment(@PathVariable String name, String description, Inventor inventor) {
+		Experiment experiment = new Experiment(name, description, inventor);
 		experimentStorage.addExperiment(experiment);
 	}
 	

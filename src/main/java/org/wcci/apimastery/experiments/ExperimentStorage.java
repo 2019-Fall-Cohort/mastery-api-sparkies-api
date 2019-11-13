@@ -1,4 +1,4 @@
-package org.wcci.apimastery;
+package org.wcci.apimastery.experiments;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

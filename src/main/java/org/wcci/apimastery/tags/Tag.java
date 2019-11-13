@@ -1,4 +1,4 @@
-package org.wcci.apimastery;
+package org.wcci.apimastery.tags;
 
 import java.util.List;
 
@@ -7,30 +7,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.wcci.apimastery.inventors.Inventor;
+
 @Entity
-public class Experiment {
+public class Tag {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
-	private String description;
-	@ManyToMany
+	private String tagName;
+	@ManyToMany(mappedBy = "tags")
 	private List<Inventor> inventors;
 	
-	public Experiment() {}
-	public Experiment(String name, String description) {
-		this.name = name;
-		this.description = description;
+	
+	public Tag() {}
+	public Tag(String tagName) {
+		this.tagName = tagName;
 	}
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
-	public String getName() {
-		return name;
-	}
-	public String getDescription() {
-		return description;
+	public String getTagName() {
+		return tagName;
 	}
 	public List<Inventor> getInventors() {
 		return inventors;

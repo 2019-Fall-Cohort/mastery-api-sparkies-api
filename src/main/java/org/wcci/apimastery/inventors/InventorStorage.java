@@ -1,15 +1,22 @@
-package org.wcci.apimastery;
+package org.wcci.apimastery.inventors;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.wcci.apimastery.tags.Tag;
+import org.wcci.apimastery.tags.TagRepository;
+
+import antlr.collections.List;
 
 @Service
 public class InventorStorage {
 
 	@Autowired
 	private InventorRepository inventorRepo;
+	
+	@Autowired
+	private TagRepository tagRepo;
 	
 	public Iterable<Inventor> getAllInventors(){
 		return inventorRepo.findAll();
@@ -25,6 +32,12 @@ public class InventorStorage {
 
 	public void removeInventor(Inventor inventor) {
 		inventorRepo.delete(inventor);
+	}
+
+	public void addTagToInventor(Tag addedTag, Long id) {
+		Inventor inventor = inventorRepo.findById(id).get();
+		List tagList = (List) inventor.getTags();
+		tagList.add(addedTag);
 	}
 
 //	public Inventor getInventor(long id) throws InventorNotFoundException {

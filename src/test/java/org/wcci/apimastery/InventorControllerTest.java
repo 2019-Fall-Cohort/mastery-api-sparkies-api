@@ -16,6 +16,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.wcci.apimastery.inventors.Inventor;
+import org.wcci.apimastery.inventors.InventorController;
+import org.wcci.apimastery.inventors.InventorNotFoundException;
+import org.wcci.apimastery.inventors.InventorStorage;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;

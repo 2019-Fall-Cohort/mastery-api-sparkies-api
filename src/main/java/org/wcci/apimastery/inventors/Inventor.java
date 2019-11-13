@@ -1,12 +1,17 @@
-package org.wcci.apimastery;
+package org.wcci.apimastery.inventors;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.wcci.apimastery.experiments.Experiment;
+import org.wcci.apimastery.tags.Tag;
 
 @Entity
 public class Inventor {
@@ -16,9 +21,7 @@ public class Inventor {
 	private Long id;
 	private String name;
 	private String country;
-//	@OneToMany
-//	private List<String> pictures;
-	@ManyToMany
+	@OneToMany(mappedBy="inventor")
 	private List<Experiment> experiments;
 	@ManyToMany
 	private List<Tag> tags;
@@ -37,9 +40,7 @@ public class Inventor {
 	public String getCountry() {
 		return country;
 	}
-//	public List<String> getPictures() {
-//		return pictures;
-//	}
+
 	public List<Experiment> getExperiments() {
 		return experiments;
 	}
