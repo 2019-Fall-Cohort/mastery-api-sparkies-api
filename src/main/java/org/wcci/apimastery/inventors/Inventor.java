@@ -43,9 +43,6 @@ public class Inventor {
 	}
 	
 	public void removeInventorTag(Tag tag) {
-//		if (tags == null) {
-//			tags = new ArrayList<>();
-//		}
 		tags.remove(tag);
 	}
 	

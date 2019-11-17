@@ -1,12 +1,17 @@
 package org.wcci.apimastery.experiments;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.wcci.apimastery.inventors.Inventor;
+import org.wcci.apimastery.tags.Tag;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +27,9 @@ public class Experiment {
 	@JsonIgnore
 	@ManyToOne
 	private Inventor inventor;
+	@ManyToMany
+	private List<Tag> tags;
+	
 	
 	public Experiment() {}
 	public Experiment(String name, String description, Inventor inventor) {
@@ -40,6 +48,18 @@ public class Experiment {
 	}
 	public Inventor getInventor() {
 		return inventor;
+	}
+	public List<Tag> getTags() {
+		return tags;
+	}
+	public void giveExperimentATag(Tag tag) {
+		if (tags == null) {
+			tags = new ArrayList<>();
+		}
+		tags.add(tag);
+	}
+	public void removeExperimentTag(Tag tag) {
+		tags.remove(tag);
 	}
 	
 }
