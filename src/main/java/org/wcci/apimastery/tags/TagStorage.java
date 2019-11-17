@@ -19,4 +19,8 @@ public class TagStorage {
 		return tagRepo.findById(id).get();
 	}
 	
+	public void removeTag(Tag tag) {
+		tagRepo.delete(tag);
+	}
+	
 }

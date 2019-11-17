@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wcci.apimastery.experiments.Experiment;
+import org.wcci.apimastery.experiments.ExperimentStorage;
 import org.wcci.apimastery.tags.Tag;
 import org.wcci.apimastery.tags.TagStorage;
 
@@ -24,6 +26,8 @@ public class InventorController {
 	
 	@Autowired
 	private TagStorage tagStorage;
+	
+	@Autowired ExperimentStorage experimentStorage;
 	
 	@GetMapping("")
 	public List<Inventor> getInventors(){
@@ -60,6 +64,21 @@ public class InventorController {
 	@DeleteMapping("/{id}/remove")
 	public void removeSingleInventor(@PathVariable Long id) {
 		Inventor inventor = inventorStorage.findInventorById(id);
+		List<Experiment> theExperiments = inventor.getExperiments();
+		List<Tag> inventorTags = inventor.getTags();
+		
+		for (Experiment experiment : theExperiments) {
+			List<Tag> experimentTags = experiment.getTags() ;
+			for (Tag tag : experimentTags) {
+				tagStorage.removeTag(tag);
+			}
+			experimentStorage.removeExperiment(experiment);
+		}
+		for (Tag tag : inventorTags) {
+			tagStorage.removeTag(tag);
+		}
+		inventor.getExperiments().clear();
+		inventor.getTags().clear();
 		inventorStorage.removeInventor(inventor);
 	}
 }
