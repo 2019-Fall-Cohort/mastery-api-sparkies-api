@@ -49,6 +49,14 @@ public class InventorController {
 		inventorStorage.addTagToInventor(addedTag, id);
 	}
 	
+	@PatchMapping("/{inventorId}/removeTag/{tagId}")
+	public void removeTag(@PathVariable("inventorId") Long inventorId, 
+						  @PathVariable("tagId") Long tagId) {
+		Inventor inventor = inventorStorage.findInventorById(inventorId);
+		Tag tagToBeRemoved = tagStorage.findTagById(tagId);
+		inventorStorage.removeTagFromInventor(inventor, tagToBeRemoved);
+	}
+	
 	@DeleteMapping("/{id}/remove")
 	public void removeSingleInventor(@PathVariable Long id) {
 		Inventor inventor = inventorStorage.findInventorById(id);

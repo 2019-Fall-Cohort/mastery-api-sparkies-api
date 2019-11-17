@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import org.wcci.apimastery.experiments.Experiment;
 import org.wcci.apimastery.tags.Tag;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Inventor {
 
@@ -38,6 +40,13 @@ public class Inventor {
 			tags = new ArrayList<>();
 		}
 		tags.add(tag);
+	}
+	
+	public void removeInventorTag(Tag tag) {
+//		if (tags == null) {
+//			tags = new ArrayList<>();
+//		}
+		tags.remove(tag);
 	}
 	
 	public Long getId() {

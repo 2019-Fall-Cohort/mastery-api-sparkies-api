@@ -3,6 +3,7 @@ package org.wcci.apimastery.tags;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wcci.apimastery.experiments.ExperimentRepository;
+import org.wcci.apimastery.inventors.Inventor;
 
 @Service
 public class TagStorage {
@@ -14,5 +15,8 @@ public class TagStorage {
 		return tagRepo.save(tag);
 	}
 	
+	public Tag findTagById(Long id) {
+		return tagRepo.findById(id).get();
+	}
 	
 }

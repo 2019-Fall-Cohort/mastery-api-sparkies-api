@@ -39,6 +39,11 @@ public class InventorStorage {
 		inventor.giveInventorATag(addedTag);
 		inventorRepo.save(inventor);
 	}
+	
+	public void removeTagFromInventor(Inventor inventor, Tag tag) {
+		inventor.removeInventorTag(tag);
+		inventorRepo.save(inventor);
+	}
 
 //	public Inventor getInventor(long id) throws InventorNotFoundException {
 //		Optional<Inventor> retrievedInventorOptional = inventorRepo.findById(id);

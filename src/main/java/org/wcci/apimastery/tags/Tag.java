@@ -9,6 +9,8 @@ import javax.persistence.ManyToMany;
 
 import org.wcci.apimastery.inventors.Inventor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Tag {
 
@@ -16,6 +18,7 @@ public class Tag {
 	@GeneratedValue
 	private Long id;
 	private String tagName;
+	@JsonIgnore
 	@ManyToMany(mappedBy = "tags")
 	private List<Inventor> inventors;
 	
